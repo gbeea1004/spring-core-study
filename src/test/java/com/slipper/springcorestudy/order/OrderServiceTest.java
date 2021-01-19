@@ -1,16 +1,23 @@
 package com.slipper.springcorestudy.order;
 
+import com.slipper.springcorestudy.AppConfig;
 import com.slipper.springcorestudy.member.Grade;
 import com.slipper.springcorestudy.member.Member;
 import com.slipper.springcorestudy.member.MemberService;
-import com.slipper.springcorestudy.member.MemberServiceImpl;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class OrderServiceTest {
+    MemberService memberService;
+    OrderService orderService;
 
-    MemberService memberService = new MemberServiceImpl();
-    OrderService orderService = new OrderServiceImpl();
+    @BeforeEach
+    void setUp() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+        orderService = appConfig.orderService();
+    }
 
     @Test
     void createOrder() {
